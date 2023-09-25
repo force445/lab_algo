@@ -50,9 +50,25 @@ class Linkedlist{
         this.length++
     }
     remove(index){
-    let i = 0;
-    let currentNode = this.head;
-    }
+        let i = 0;
+        if (index === 0) {
+            this.head = this.head.next
+            this.length--
+            return this.printList()
+        }
+        let currentNode = this.head;
+        while(i<index-1){
+            currentNode = currentNode.next
+            i++
+        }
+        const holdCurrentNode = currentNode
+        const holdingPointer = currentNode.next
+        const nextNode = holdingPointer.next
+        holdCurrentNode.next = nextNode
+        this.length--
+        
+        return this.printList()
+}
 }
 
 let myLinkedList = new Linkedlist(10);
@@ -60,7 +76,6 @@ myLinkedList.append(5);
 myLinkedList.append(16);
 myLinkedList.prepend(1);
 myLinkedList.insert(2,99)
-myLinkedList.insert(3,88)
-myLinkedList.insert(1,77)
-myLinkedList.prepend(100)
+myLinkedList.remove(2)
+myLinkedList.remove(0)
 console.log(myLinkedList.printList())
